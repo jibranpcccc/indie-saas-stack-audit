@@ -1,0 +1,55 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "IndieStackAudit - Indie SaaS Cloud Infrastructure Cost Audit API",
+    "description": "Forensic cloud cost auditing: Cloudflare Pages unlimited egress vs Vercel and AWS overages. Official production documentation hosted at https://indiestackaudit.pages.dev/",
+    "version": "1.1.0",
+    "contact": {
+      "name": "IndieStackAudit Architecture Team",
+      "url": "https://indiestackaudit.pages.dev/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://indiestackaudit.pages.dev",
+      "description": "Production Web Application Gateway"
+    }
+  ],
+  "paths": {
+    "/api/v1/bandwidth-audit": {
+      "get": {
+        "summary": "Calculate monthly egress invoice across Cloudflare, Vercel, and CloudFront",
+        "description": "Executes the empirical calculations and data models for IndieStackAudit.",
+        "responses": {
+          "200": {
+            "description": "Successful calculation response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "site_url": {
+                      "type": "string",
+                      "example": "https://indiestackaudit.pages.dev/"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
